@@ -1,0 +1,114 @@
+/*************************************
+************Common
+*******************************************/
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins',sans-serif;
+    scroll-behavior: smooth;
+}
+
+/********************************************
+***************Header
+*********************************************/
+
+header nav {
+    display:flex;
+    justify-content:space-between ;
+    align-items: center;
+    padding: 0rem 2rem;
+}
+
+header nav .right-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+header nav .right-nav a {
+    text-decoration: none;
+    color: black;
+}
+
+header .ice-age {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+header .ice-age .info {
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+header .ice-age .info h1 {
+    font-size: 5rem;
+}
+
+header .ice-age .info button {
+    width: 40%;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: #fff;
+    border: 1px solid #005469;
+}
+
+header .ice-age .image {
+    flex-basis: 70%;
+}
+
+header .ice-age .image img {
+    width: 100%;
+}
+
+header .filter {
+    position: relative;
+    width: 100%;
+}
+
+header .filter img {
+    position: absolute;
+    width: 100%;
+    top: -9rem;
+    z-index: -10;
+}
+/*********main************/
+
+
+main {
+    width: 80%;
+    margin:5rem auto;
+}
+main .movies-section{
+    display: grid;
+    grid-template-columns: repeat(5,auto);
+    gap: 2rem;
+    margin-top: 4vw;
+}
+main .movie-div{
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 1rem;
+}
+#movie-img{
+    width: 100%;
+}
+main .heart-link{
+    position: absolute;
+    top:0;
+    right:0;
+}
+main .movie-info{
+    text-align: center;
+}
+footer {
+  text-align: center; 
+}
