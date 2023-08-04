@@ -8,9 +8,9 @@ Forum App, with a frontend built in React & Redux and a backend built in Django 
 
 **This App uses a Replit free plan, so I am afraid that it takes time to load the pages.**
 
-Check out [FRONTEND LIVE DEMO](https://techis-wd-forum-django-react-frontend.techisio.repl.co/) here!!
+Check out [FRONTEND LIVE DEMO](https://cinema-paradiso-frontend.patelchandresh5.repl.co/) here!!
 
-Check out [API LIVE DEMO](https://techis-wd-forum-django-react-backend.techisio.repl.co/) here!!
+Check out [API LIVE DEMO](https://cinema-pradiso-backend.patelchandresh5.repl.co/) here!!
 
 ## Tech used
 
@@ -24,11 +24,7 @@ Check out [API LIVE DEMO](https://techis-wd-forum-django-react-backend.techisio.
 1. Git Clone
 
 ```
-git clone git@github.com:Tech-i-s/techis-wd-forum-django-react.git
-```
-
-2. Backend setting
-
+git clone https://github.com/patelchandresh522/cinema-paradise.git
 ```
 cd backend
 Python -m venv env
