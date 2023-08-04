@@ -6,22 +6,31 @@ import Header from '../components/common/Header'
 import watchImg from '../assets/cinema-img/trailer.png'
 import likeImg from '../assets/cinema-img/heart.svg'
 import Footer from '../components/common/Footer'
-import { toggleFavoritesAction } from '../reducks/favorites/actions'
+import { addFavorites, deleteFavorites } from '../reducks/favorites/operations'
+import { getFavorites } from '../reducks/favorites/selector'
+
 
 const Home = () => {
     const selector = useSelector((state) => state)
     const movies = getMovies(selector)
     console.log(movies)
     const dispatch = useDispatch();
-    const favorites = useSelector(state => state.favorites.list)
+    const favorites = getFavorites(selector)
 
-    const toggleFavorite = (id) => {
-        dispatch(toggleFavoritesAction(id))
-    }
 
     useEffect(() => {
         dispatch(fetchMovies())
     }, [dispatch])
+
+    const handleFavoriteToggle = movie => {
+        const isFavorite = favorites.some(favMovie => favMovie.id === movie.id);
+        if(isFavorite){
+            dispatch(deleteFavorites(movie.id));
+        }
+        else{
+            dispatch(addFavorites(movie));
+        }
+    }
 
     const renderMovieRealseType = (releaseType) => {
         const filteredMovies = movies.filter(
@@ -30,7 +39,11 @@ const Home = () => {
 
 
         return (
-            <div className='movies-section'>{filteredMovies && filteredMovies.map((movie, index) => (
+            <div className='movies-section'>{filteredMovies && filteredMovies.map((movie, index) =>{
+                const isFavorite = favorites.includes(
+                    favMovie => favMovie.id === movie.id
+                );
+               return (
                 <div className='movie-div' key={index}>
                     <div className="image">
                         <img src={movie.image} alt="pic" />
@@ -46,12 +59,12 @@ const Home = () => {
                     </div>
                     <div class="heart-link">
                         <img src={likeImg} alt="" id="heart-img" 
-                        onClick={() => toggleFavorite(movie.id)}
-                        style={{filter: favorites.includes(movie.id ? "brightness(0)":"")}}
+                        onClick={() => handleFavoriteToggle(movie)}
                         />
                     </div>
                 </div>
-            ))}</div>
+               );
+})}</div>
         )
     }
 

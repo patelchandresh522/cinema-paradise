@@ -1,26 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFavorites } from '../reducks/favorites/selector'
 import { getMovies } from '../reducks/movies/selector'
 import watchImg from '../assets/cinema-img/trailer.png'
 import likeImg from '../assets/cinema-img/heart.svg'
 import { toggleFavoritesAction } from '../reducks/favorites/actions'
+import { deleteFavorites, fetchFromLocalStorage } from '../reducks/favorites/operations'
 
 const Favorites = () => {
+    const selector = useSelector(state => state);
 
-
-    const favorites = useSelector(getFavorites)
-    const movies = useSelector(getMovies)
+    const favoriteMovies = getFavorites(selector)
+    console.log(favoriteMovies)
 
     const disptach = useDispatch();
 
-    const favoriteMovies = favorites.map((favoriteId) => {
-        return movies.find((movie) => movie.id === favoriteId)
-    })
-
-    const toggleFavorite = (id) => {
-        disptach(toggleFavoritesAction(id))
+    const deleteFavorite = id => {
+        disptach(deleteFavorites(id));
     }
+    
+    useEffect(() => {
+        disptach(fetchFromLocalStorage());
+    }, [disptach])
 
   return (
     <div>
@@ -41,8 +42,8 @@ const Favorites = () => {
            </div>
            <div class="heart-link">
                <img src={likeImg} alt="" id="heart-img" 
-               onClick={() => toggleFavorite(favoriteMovie.id)}
-               style={{filter: favorites.includes(favoriteMovie.id ? "brightness(0)":"")}}
+               onClick={() => deleteFavorite(favoriteMovie.id)}
+               
                />
            </div>
        </div> 
